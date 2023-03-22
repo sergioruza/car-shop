@@ -14,3 +14,5 @@ abstract class AbstractODM<T> {
     return this.model.create({ ...info });
   }
 }
+
+export default AbstractODM;
