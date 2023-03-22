@@ -1,14 +1,14 @@
 import { ICar } from '../Interfaces/ICar';
 
-export default class name {
-  private id: string | undefined;
-  private model: string;
-  private year: number;
-  private color: string;
-  private status: boolean;
-  private buyValue: number;
-  private doorsQty: number;
-  private seatsQty: number;
+export default class Car {
+  id: string | undefined;
+  model: string;
+  year: number;
+  color: string;
+  status: boolean;
+  buyValue: number;
+  doorsQty: number;
+  seatsQty: number;
   constructor(obj: ICar) {
     this.id = obj.id;
     this.model = obj.model;
@@ -18,13 +18,6 @@ export default class name {
     this.buyValue = obj.buyValue;
     this.doorsQty = obj.doorsQty;
     this.seatsQty = obj.seatsQty;
-  }
-
-  public get GetId(): string | undefined {
-    return this.id;
-  }
-  public set SetId(value: string | undefined) {
-    this.id = value;
   }
 
   public get GetModel(): string | undefined {
