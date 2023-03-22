@@ -4,7 +4,7 @@ import CarODM from '../Models/CarODM';
 
 export default class CarService {
   private carModel = new CarODM();
-  private createCarDomain(car: ICar | null): ICar | null {
+  private createCarDomain(car: ICar): Car | null {
     if (Car) {
       return new Car(car);
     }
@@ -16,7 +16,7 @@ export default class CarService {
     if (!info.status) {
       obj = { ...info, status: false };
     }
-    const create = await this.carModel.create({ ...obj });
+    const create = await this.carModel.create(obj);
     const newCar = this.createCarDomain(create);
 
     return newCar;
@@ -30,6 +30,6 @@ export default class CarService {
 
   public async findById(id: string) {
     const result = await this.carModel.findById(id);
-    return this.createCarDomain(result);
+    return this.createCarDomain(result as ICar);
   }
 }

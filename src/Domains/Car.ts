@@ -9,6 +9,7 @@ export default class Car {
   protected buyValue: number;
   private doorsQty: number;
   private seatsQty: number;
+
   constructor(obj: ICar) {
     this.id = obj.id;
     this.model = obj.model;

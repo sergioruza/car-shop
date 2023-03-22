@@ -11,10 +11,10 @@ export default class CarController {
     this.res = res;
     this.service = new CarService();
   }
-
+  
   async createCar() {
     const { body } = this.req;
-
+    console.log(this.req.body);
     const result = await this.service.createCar({ ...body });
     return this.res.status(201).json(result);
   }
