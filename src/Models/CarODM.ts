@@ -1,5 +1,5 @@
 import { Schema } from 'mongoose';
-import { ICar } from '../Interfaces/ICar';
+import ICar from '../Interfaces/ICar';
 import AbstractODM from './AbstractODM';
 
 export default class CarODM extends AbstractODM<ICar> {
@@ -14,5 +14,13 @@ export default class CarODM extends AbstractODM<ICar> {
       seatsQty: { type: Number, required: true },
     });
     super('Car', schema);
+  }
+
+  async findAll(): Promise<ICar[]> {
+    return this.model.find();
+  }
+
+  async findById(id: string): Promise<ICar | null> {
+    return this.model.findById(id);
   }
 }

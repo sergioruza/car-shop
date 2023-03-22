@@ -15,7 +15,19 @@ export default class CarController {
   async createCar() {
     const { body } = this.req;
 
-    const result = this.service.createCar({ ...body });
+    const result = await this.service.createCar({ ...body });
     return this.res.status(201).json(result);
+  }
+
+  async findAll() {
+    const result = await this.service.findAll();
+    return this.res.status(200).json(result);
+  }
+
+  async findById() {
+    const { id } = this.req.params;
+    const result = this.service.findById(id);
+
+    return this.res.status(200).json(result);
   }
 }
