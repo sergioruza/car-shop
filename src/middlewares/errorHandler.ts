@@ -1,11 +1,26 @@
-import { NextFunction, Request, Response } from 'express';
+import { Request, Response, NextFunction } from 'express';
 
 class ErrorHandler {
-  static handle(err: Error, req: Request, res: Response, _next: NextFunction) {
-    if (err instanceof Error && err.stack) {
-      return res.status(+err.stack).json({ message: err.message });
-    }
-    return res.status(500).json({ message: 'Internal server error' });
+  static handle(err: Error, req: Request, res: Response, next: NextFunction) {
+    if (err.message === 'Invalid mongo id') {
+      res.status(422).json({ message: err.message });
+      return next();
+    } if (err.message === 'Car not found') {
+      res.status(404).json({ message: err.message });
+      return next();
+    } 
+    res.status(500).json({ message: 'internal server error' });
+    return next();
+    
+    // switch (err.message) {
+    //   case 'Invalid mongo id':
+    //     res.status(422).json({ message: err.message });
+    //     next();
+    //   case 'Car not found':
+    //     return res.status(422).json({ message: err.message });
+    //   default:
+    //     return res.status(422).json({ message: err.message });
+    // }
   }
 }
 

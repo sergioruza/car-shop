@@ -1,4 +1,4 @@
-import { Schema } from 'mongoose';
+import { Schema, isValidObjectId } from 'mongoose';
 import ICar from '../Interfaces/ICar';
 import AbstractODM from './AbstractODM';
 
@@ -17,10 +17,15 @@ export default class CarODM extends AbstractODM<ICar> {
   }
 
   async findAll(): Promise<ICar[]> {
-    return this.model.find();
+    const cars = await this.model.find();
+    if (cars.length === 0) throw new Error('Car not found');
+    return cars;
   }
 
   async findById(id: string): Promise<ICar | null> {
-    return this.model.findById(id);
+    if (!isValidObjectId(id)) throw new Error('Invalid mongo id');
+    const car = await this.model.findById(id);
+    if (!car) throw new Error('Car not found');
+    return car;
   }
 }
