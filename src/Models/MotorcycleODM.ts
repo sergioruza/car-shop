@@ -1,6 +1,5 @@
 import { Schema } from 'mongoose';
 import IMotorcycles from '../Interfaces/IMotorcycle';
-import MotorCycleCategories from '../utils/MotorCycleCategories';
 import AbstractODM from './AbstractODM';
 
 export default class MotorcyclesODM extends AbstractODM<IMotorcycles> {
@@ -11,7 +10,7 @@ export default class MotorcyclesODM extends AbstractODM<IMotorcycles> {
       color: { type: String, required: true },
       status: { type: Boolean, required: false },
       buyValue: { type: Number, required: true },
-      category: { type: MotorCycleCategories, required: true },
+      category: { type: String, required: true },
       engineCapacity: { type: Number, required: true },
     });
     super('Motorcycle', schema);

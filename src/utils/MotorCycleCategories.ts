@@ -1,5 +1,5 @@
 enum MotorCycleCategories {
-  STREET = 'street',
+  STREET = 'Street',
   CUSTOM = 'Custom',
   TRAIL = 'Trail',
 }

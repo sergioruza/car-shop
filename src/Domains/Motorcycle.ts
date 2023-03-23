@@ -3,7 +3,7 @@ import MotorCycleCategories from '../utils/MotorCycleCategories';
 import Vehicle from './Vehicle';
 
 export default class Motorcycle extends Vehicle {
-  private category: MotorCycleCategories | undefined;
+  private category: string | undefined;
   private engineCapacity: number;
 
   constructor(obj: IMotorcycle) {
@@ -15,7 +15,7 @@ export default class Motorcycle extends Vehicle {
   public get GetCategory(): string | undefined {
     return this.category;
   }
-  public set SetCategory(value: MotorCycleCategories) {
+  public set SetCategory(value: string | undefined) {
     this.category = value;
   }
 

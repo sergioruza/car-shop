@@ -8,9 +8,8 @@ class ErrorHandler {
     } if (err.message === 'Car not found') {
       res.status(404).json({ message: err.message });
       return next();
-    } 
-    res.status(500).json({ message: 'internal server error' });
-    return next();
+    }
+    next();
     
     // switch (err.message) {
     //   case 'Invalid mongo id':
