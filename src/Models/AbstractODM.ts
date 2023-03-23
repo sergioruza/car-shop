@@ -13,6 +13,15 @@ abstract class AbstractODM<T> {
   public async create(info: T): Promise<T> {
     return this.model.create({ ...info });
   }
+
+  public async update(_id: string, info: Partial<T>): Promise<T | null> {
+    const response = await this.model.findByIdAndUpdate(
+      { _id },
+      { ...info },
+      { new: true },
+    );
+    return response;
+  }
 }
 
 export default AbstractODM;

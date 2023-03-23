@@ -38,4 +38,16 @@ export default class CarController {
       this.next(error);
     }
   }
+
+  async updateById() {
+    try {
+      const { body } = this.req;
+      const { id } = this.req.params;
+
+      const result = await this.service.updateById(id, { ...body });
+      return this.res.status(200).json(result);
+    } catch (err) {
+      this.next(err);
+    }
+  } 
 }
