@@ -1,7 +1,7 @@
 import MotorCycleCategories from '../utils/MotorCycleCategories';
-import IAbstractVehicle from './IAbstractVehicle';
+import IVehicle from './IVehicle';
 
-export default interface IMotorcycles extends IAbstractVehicle {
+export default interface IMotorcycle extends IVehicle {
   category: MotorCycleCategories | undefined,
   engineCapacity: number
 }
