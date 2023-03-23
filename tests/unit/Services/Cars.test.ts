@@ -105,6 +105,55 @@ describe('Testa todas as rotas de /cars', function () {
     expect(result).to.be.equal(output);
   });
 
+  it('Edita um carro com sucesso', async function () {
+    const input = {
+      model: 'Marea',
+      year: 1992,
+      color: 'Red',
+      status: true,
+      buyValue: 12.000,
+      doorsQty: 2,
+      seatsQty: 5,
+    };
+    const output = new Car({
+      id: '641b83f73816f4e756286444',
+      model: 'Marea',
+      year: 2002,
+      color: 'Black',
+      status: true,
+      buyValue: 15.99,
+      doorsQty: 4,
+      seatsQty: 5,
+    });
+  
+    sinon.stub(Model, 'findByIdAndUpdate').resolves(output);
+
+    const service = new CarService();
+    const result = await service.updateById('641b83f73816f4e756286444', input);
+    expect(result).to.be.deep.equal(output);
+  });
+
+  it('Não é possível editar um carro que não existe', async function () {
+    const input = {
+      model: 'Marea',
+      year: 1992,
+      color: 'Red',
+      status: true,
+      buyValue: 12.000,
+      doorsQty: 2,
+      seatsQty: 5,
+    };
+  
+    sinon.stub(Model, 'findByIdAndUpdate').resolves(undefined);
+
+    try {
+      const service = new CarService();
+      await service.updateById('641b83f73816f4e756286444', input);
+    } catch (err) {
+      expect((err as Error).message).to.be.equal('Car not found');
+    }
+  });
+
   afterEach(function () {
     sinon.restore();
   });
