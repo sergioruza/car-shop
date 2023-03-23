@@ -5,7 +5,7 @@ class ErrorHandler {
     if (err.message === 'Invalid mongo id') {
       res.status(422).json({ message: err.message });
       return next();
-    } if (err.message === 'Car not found') {
+    } if (err.message === 'Car not found' || err.message === 'Motorcycle not found') {
       res.status(404).json({ message: err.message });
       return next();
     }

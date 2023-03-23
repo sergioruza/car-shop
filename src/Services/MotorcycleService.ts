@@ -28,4 +28,15 @@ export default class MotorcycleService {
 
     return newMotorcycle;
   }
+
+  async findAll() {
+    const motors = await this.motorcycleModel.findAll();
+    return motors.map((e) => this.createMotorcycleDomain(e));
+  }
+
+  async findById(id: string) {
+    const motor = await this.motorcycleModel.findById(id);
+
+    return this.createMotorcycleDomain(motor);
+  }
 }

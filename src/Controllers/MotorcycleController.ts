@@ -19,4 +19,24 @@ export default class MotorcycleController {
     const result = await this.service.createMotorcycle({ ...body });
     return this.res.status(201).json(result);
   }
+
+  async findAll() {
+    try {
+      const result = await this.service.findAll();
+      return this.res.status(200).json(result);
+    } catch (err) {
+      this.next(err);
+    }
+  }
+
+  async findById() {
+    try {
+      const { id } = this.req.params;
+      const result = await this.service.findById(id);
+
+      return this.res.status(200).json(result);
+    } catch (err) {
+      this.next(err);
+    }
+  }
 }
