@@ -1,4 +1,4 @@
-import { isValidObjectId, Model } from 'mongoose';
+import { Model } from 'mongoose';
 import Sinon from 'sinon';
 import { expect } from 'chai';
 import MotorcycleService from '../../../src/Services/MotorcycleService';
