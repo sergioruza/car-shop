@@ -110,7 +110,6 @@ describe('Testa a rota /motorcycles', function () {
     };
 
     const output = new Motorcycle(mock);
-    Sinon.stub(isValidObjectId);
     Sinon.stub(Model, 'findById').resolves(mock);
 
     const service = new MotorcycleService();
@@ -129,6 +128,59 @@ describe('Testa a rota /motorcycles', function () {
       expect((err as Error).message).to.be.deep.equal('Motorcycle not found');
     }
   });
+
+  it('Retorna um erro ao não encontrar uma moto para atualizar', async function () {
+    const mock = {
+      model,
+      year: 2014,
+      color: 'Red',
+      status: true,
+      buyValue: 45.000,
+      category: 'Street',
+      engineCapacity: 600,
+    };
+
+    Sinon.stub(Model, 'findByIdAndUpdate').resolves(undefined);
+
+    try {
+      const service = new MotorcycleService();
+      await service.update('634852326b35b59438fbea2f', mock);
+    } catch (err) {
+      expect((err as Error).message).to.be.deep.equal('Motorcycle not found');
+    }
+  });
+
+  it('Atualiza uma moto por id', async function () {
+    const mockInput = {
+      model,
+      year: 2014,
+      color: 'Red',
+      status: true,
+      buyValue: 45.000,
+      category: 'Street',
+      engineCapacity: 600,
+    };
+
+    const mockOutput = {
+      id: '634852326b35b59438fbea2f',
+      model,
+      year: 2014,
+      color: 'Red',
+      status: true,
+      buyValue: 45.000,
+      category: 'Street',
+      engineCapacity: 600,
+    };
+
+    const output = new Motorcycle(mockOutput);
+    Sinon.stub(Model, 'findByIdAndUpdate').resolves(mockOutput);
+
+    const service = new MotorcycleService();
+    const motors = await service.update('634852326b35b59438fbea2f', mockInput);
+
+    expect(motors).to.be.deep.equal(output);
+  });
+
   afterEach(function () {
     Sinon.restore();
   });

@@ -102,7 +102,7 @@ describe('Testa todas as rotas de /cars', function () {
 
     const service = new CarService();
     const result = await service.findById('641b83f73816f4e756286444');
-    expect(result).to.be.equal(output);
+    expect(result).to.be.deep.equal(output);
   });
 
   it('Edita um carro com sucesso', async function () {
