@@ -48,9 +48,9 @@ O sistema é composto de uma API com rotas. Linguagem, frameworks e bibliotecas 
 > Back-End
 * **F1** - TypeScript.
 * **F2** - Node.
-* **F3** - Sequelize.
-* **F4** - MongoDB.
-* **F5** - Mongoose.
+* **F3** - MongoDB.
+* **F4** - Mongoose.
+* **F5** - express.
 
 ### Requisitos Funcionais
 Respeitando a proposta, o sistema deverá atender os seguintes requisitos:
@@ -74,6 +74,10 @@ Respeitando a proposta, o sistema deverá atender os seguintes requisitos:
 - Utilizar Mongoose para manipulação no mongoDB;
 
 - Realizar uma aplicação com CRUD;
+  
+- Aplicar os princípios de Programação Orientada a Objetos;
+  
+- Aplicar os principios de SOLID;
 
 </details>
 
